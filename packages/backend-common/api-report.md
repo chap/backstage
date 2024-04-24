@@ -58,7 +58,7 @@ import { ReadUrlResponse } from '@backstage/backend-plugin-api';
 import { RequestHandler } from 'express';
 import { RootConfigService } from '@backstage/backend-plugin-api';
 import { Router } from 'express';
-import { SchedulerService } from '@backstage/backend-plugin-api';
+import { SchedulerService } from '@backstage/backend-plugin-api/scheduler';
 import { SearchOptions } from '@backstage/backend-plugin-api';
 import { SearchResponse } from '@backstage/backend-plugin-api';
 import { SearchResponseFile } from '@backstage/backend-plugin-api';
