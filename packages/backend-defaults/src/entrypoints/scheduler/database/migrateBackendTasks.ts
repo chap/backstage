@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 The Backstage Authors
+ * Copyright 2021 The Backstage Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +14,18 @@
  * limitations under the License.
  */
 
-export * from './auth';
-export * from './cache';
-export * from './config';
-export * from './database';
-export * from './discovery';
-export * from './httpAuth';
-export * from './httpRouter';
-export * from './identity';
-export * from './lifecycle';
-export * from './logger';
-export * from './permissions';
-export * from './rootHttpRouter';
-export * from './rootLifecycle';
-export * from './rootLogger';
-export * from './tokenManager';
-export * from './urlReader';
-export * from './userInfo';
+import { resolvePackagePath } from '@backstage/backend-common';
+import { Knex } from 'knex';
+import { DB_MIGRATIONS_TABLE } from './tables';
 
-export * from './deprecated';
+export async function migrateBackendTasks(knex: Knex): Promise<void> {
+  const migrationsDir = resolvePackagePath(
+    '@backstage/backend-defaults',
+    'migrations/scheduler',
+  );
+
+  await knex.migrate.latest({
+    directory: migrationsDir,
+    tableName: DB_MIGRATIONS_TABLE,
+  });
+}

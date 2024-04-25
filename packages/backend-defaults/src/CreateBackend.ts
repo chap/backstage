@@ -28,7 +28,6 @@ import {
   loggerServiceFactory,
   permissionsServiceFactory,
   rootLoggerServiceFactory,
-  schedulerServiceFactory,
   tokenManagerServiceFactory,
   urlReaderServiceFactory,
   identityServiceFactory,
@@ -36,6 +35,7 @@ import {
   httpAuthServiceFactory,
   userInfoServiceFactory,
 } from '@backstage/backend-app-api';
+import { schedulerServiceFactory } from '@backstage/backend-defaults/scheduler';
 
 export const defaultServiceFactories = [
   authServiceFactory(),
