@@ -362,7 +362,7 @@ export class DatabaseManager implements LegacyRootDatabaseService {
       let schemaOverrides;
       if (this.getPluginDivisionModeConfig() === 'schema') {
         schemaOverrides = this.getSchemaOverrides(pluginId);
-        if (this.getEnsureExistsConfig(pluginId)) {
+        if (this.getEnsureSchemaExistsConfig(pluginId) || this.getEnsureExistsConfig(pluginId)) {
           try {
             await ensureSchemaExists(pluginConfig, pluginId);
           } catch (error) {
