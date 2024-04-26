@@ -1,5 +1,14 @@
 # example-backend-next
 
+## 0.0.26-next.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @backstage/plugin-notifications-backend@0.2.1-next.1
+  - @backstage/plugin-catalog-backend@1.22.0-next.0
+  - @backstage/plugin-search-backend@1.5.8-next.1
+
 ## 0.0.26-next.0
 
 ### Patch Changes

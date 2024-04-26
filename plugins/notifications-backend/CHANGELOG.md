@@ -1,5 +1,14 @@
 # @backstage/plugin-notifications-backend
 
+## 0.2.1-next.1
+
+### Patch Changes
+
+- 295c05d: Support for filtering entities from notification recipients after resolving them from the recipients
+- cba628a: Add possibility to generate random notifications on the fly in local development
+- Updated dependencies
+  - @backstage/plugin-notifications-node@0.1.4-next.1
+
 ## 0.2.1-next.0
 
 ### Patch Changes

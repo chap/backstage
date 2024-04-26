@@ -1,5 +1,11 @@
 # @backstage/repo-tools
 
+## 0.8.1-next.1
+
+### Patch Changes
+
+- 9ae9bb2: Update the paths logic in the api reports command to support complex subpaths
+
 ## 0.8.1-next.0
 
 ### Patch Changes
