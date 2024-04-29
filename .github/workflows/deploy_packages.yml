@@ -135,6 +135,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      packages: write
 
     strategy:
       matrix:
