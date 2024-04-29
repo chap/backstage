@@ -52,7 +52,7 @@ if (!BOOL_CREATE_RELEASE) {
   );
 }
 
-const GH_OWNER = 'backstage';
+const GH_OWNER = 'chap';
 const GH_REPO = 'backstage';
 const EXPECTED_COMMIT_MESSAGE = /^Merge pull request #(?<prNumber>[0-9]+) from/;
 const CHANGESET_RELEASE_BRANCH = 'backstage/changeset-release/master';
@@ -197,8 +197,9 @@ async function createRelease(releaseDescription) {
 }
 
 async function main() {
-  const commit = await getCommitUsingTagName(TAG_NAME);
-  const releaseDescription = await getReleaseDescriptionFromCommit(commit);
+  // const commit = await getCommitUsingTagName(TAG_NAME);
+  // const releaseDescription = await getReleaseDescriptionFromCommit(commit);
+  const releaseDescription = 'manual release';
   await createRelease(releaseDescription);
 }
 
