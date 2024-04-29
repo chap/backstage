@@ -22,7 +22,7 @@ const fs = require('fs-extra');
 const { EOL } = require('os');
 
 const baseOptions = {
-  owner: 'backstage',
+  owner: 'chap',
   repo: 'backstage',
 };
 
