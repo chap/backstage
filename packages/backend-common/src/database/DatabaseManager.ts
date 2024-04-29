@@ -222,7 +222,7 @@ export class DatabaseManager implements LegacyRootDatabaseService {
   }
 
   private getEnsureSchemaExistsConfig(pluginId: string): boolean {
-    const baseConfig = this.config.getOptionalBoolean('ensureSchemaExists') ?? true;
+    const baseConfig = this.config.getOptionalBoolean('ensureSchemaExists') ?? false;
     return (
       this.config.getOptionalBoolean(`${pluginPath(pluginId)}.ensureSchemaExists`) ??
       baseConfig
