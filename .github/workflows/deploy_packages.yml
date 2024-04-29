@@ -107,22 +107,22 @@ jobs:
           yarn backstage-cli repo test --maxWorkers=3 --workerIdleMemoryLimit=1300M --coverage
           bash <(curl -s https://codecov.io/bash)
           # Upload code coverage for some specific flags. Also see .codecov.yml
-          bash <(curl -s https://codecov.io/bash) -f packages/core-app-api/coverage/* -F core-app-api
-          bash <(curl -s https://codecov.io/bash) -f packages/core-components/coverage/* -F core-components
-          bash <(curl -s https://codecov.io/bash) -f packages/core-plugin-api/coverage/* -F core-plugin-api
+          # bash <(curl -s https://codecov.io/bash) -f packages/core-app-api/coverage/* -F core-app-api
+          # bash <(curl -s https://codecov.io/bash) -f packages/core-components/coverage/* -F core-components
+          # bash <(curl -s https://codecov.io/bash) -f packages/core-plugin-api/coverage/* -F core-plugin-api
         env:
           BACKSTAGE_TEST_DISABLE_DOCKER: 1
           BACKSTAGE_TEST_DATABASE_POSTGRES16_CONNECTION_STRING: postgresql://postgres:postgres@localhost:${{ job.services.postgres16.ports[5432] }}
           BACKSTAGE_TEST_DATABASE_POSTGRES12_CONNECTION_STRING: postgresql://postgres:postgres@localhost:${{ job.services.postgres12.ports[5432] }}
           BACKSTAGE_TEST_DATABASE_MYSQL8_CONNECTION_STRING: mysql://root:root@localhost:${{ job.services.mysql8.ports[3306] }}/ignored
 
-      - name: Discord notification
-        if: ${{ failure() }}
-        uses: Ilshidur/action-discord@0c4b27844ba47cb1c7bee539c8eead5284ce9fa9 # 0.3.2
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        with:
-          args: 'Master build failed https://github.com/{{GITHUB_REPOSITORY}}/actions/runs/{{GITHUB_RUN_ID}}'
+      # - name: Discord notification
+      #   if: ${{ failure() }}
+      #   uses: Ilshidur/action-discord@0c4b27844ba47cb1c7bee539c8eead5284ce9fa9 # 0.3.2
+      #   env:
+      #     DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      #   with:
+      #     args: 'Master build failed https://github.com/{{GITHUB_REPOSITORY}}/actions/runs/{{GITHUB_RUN_ID}}'
 
   # A separate release build that is only run for commits that are the result of merging the "Version Packages" PR
   # We can't re-use the output from the above step, but we'll have a guaranteed node_modules cache and
@@ -170,17 +170,17 @@ jobs:
         working-directory: packages/techdocs-cli-embedded-app
         run: yarn build
 
-      # Publishes current version of packages that are not already present in the registry
-      - name: publish
-        run: |
-          yarn config set -H 'npmAuthToken' "${{secrets.NPM_TOKEN}}"
-          if [ -f ".changeset/pre.json" ]; then
-              yarn workspaces foreach -v --no-private npm publish --access public --tolerate-republish --tag next
-          else
-              yarn workspaces foreach -v --no-private npm publish --access public --tolerate-republish
-          fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # # Publishes current version of packages that are not already present in the registry
+      # - name: publish
+      #   run: |
+      #     yarn config set -H 'npmAuthToken' "${{secrets.NPM_TOKEN}}"
+      #     if [ -f ".changeset/pre.json" ]; then
+      #         yarn workspaces foreach -v --no-private npm publish --access public --tolerate-republish --tag next
+      #     else
+      #         yarn workspaces foreach -v --no-private npm publish --access public --tolerate-republish
+      #     fi
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Grabs the version in the root package.json and creates a tag on GitHub
       - name: Create a release tag
