@@ -92,6 +92,7 @@ import { customDevToolsPage } from './components/devtools/CustomDevToolsPage';
 import { DevToolsPage } from '@backstage/plugin-devtools';
 import { CatalogUnprocessedEntitiesPage } from '@backstage/plugin-catalog-unprocessed-entities';
 import { NotificationsPage } from '@backstage/plugin-notifications';
+import { HerokuStandardsPage } from '@backstage/plugin-heroku-standards';
 
 const app = createApp({
   apis,
@@ -236,6 +237,7 @@ const routes = (
       {customDevToolsPage}
     </Route>
     <Route path="/notifications" element={<NotificationsPage />} />
+    <Route path="/heroku-standards" element={<HerokuStandardsPage />} />
   </FlatRoutes>
 );
 
