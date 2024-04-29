@@ -687,7 +687,7 @@ describe('DatabaseManager', () => {
               client: 'pg',
               pluginDivisionMode: 'schema',
               ensureExists: false,
-              ensureSchemaExists: false,
+              ensureSchemaExists: true,
               connection: {
                 host: 'localhost',
                 user: 'foo',
