@@ -128,7 +128,7 @@ jobs:
   # We can't re-use the output from the above step, but we'll have a guaranteed node_modules cache and
   # only run the build steps that are necessary for publishing
   release:
-    needs: build
+    # needs: build
 
     # if: needs.build.outputs.needs_release == 'true' || inputs.force_release == true
 
