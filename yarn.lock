@@ -5912,7 +5912,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@backstage/plugin-heroku-standards@^0.0.0, @backstage/plugin-heroku-standards@workspace:plugins/heroku-standards":
+"@backstage/plugin-heroku-standards@workspace:plugins/heroku-standards":
   version: 0.0.0-use.local
   resolution: "@backstage/plugin-heroku-standards@workspace:plugins/heroku-standards"
   dependencies:
@@ -24241,7 +24241,6 @@ __metadata:
     "@backstage/plugin-catalog-react": "workspace:^"
     "@backstage/plugin-catalog-unprocessed-entities": "workspace:^"
     "@backstage/plugin-devtools": "workspace:^"
-    "@backstage/plugin-heroku-standards": ^0.0.0
     "@backstage/plugin-home": "workspace:^"
     "@backstage/plugin-kubernetes": "workspace:^"
     "@backstage/plugin-kubernetes-cluster": "workspace:^"
