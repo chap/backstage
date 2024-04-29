@@ -679,6 +679,32 @@ describe('DatabaseManager', () => {
       expect(mocked(ensureSchemaExists)).toHaveBeenCalledTimes(0);
     });
 
+    it('ensureSchemaExists can create schema when ensureExists is false', async () => {
+      const testManager = DatabaseManager.fromConfig(
+        new ConfigReader({
+          backend: {
+            database: {
+              client: 'pg',
+              pluginDivisionMode: 'schema',
+              ensureExists: false,
+              ensureSchemaExists: false,
+              connection: {
+                host: 'localhost',
+                user: 'foo',
+                password: 'bar',
+                database: 'foodb',
+              },
+            },
+          },
+        }),
+      );
+      const pluginId = 'testdbname';
+      await testManager.forPlugin(pluginId).getClient();
+
+      expect(mocked(ensureDatabaseExists)).toHaveBeenCalledTimes(0);
+      expect(mocked(ensureSchemaExists)).toHaveBeenCalledTimes(1);
+    });
+
     it('fetches and merges additional knex config', async () => {
       const testManager = DatabaseManager.fromConfig(
         new ConfigReader({
