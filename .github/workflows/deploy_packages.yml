@@ -10,8 +10,8 @@ on:
     branches: [master, patch/*]
 
 jobs:
-  # build:
-  #   runs-on: ubuntu-latest
+  build:
+    runs-on: ubuntu-latest
 
   #   outputs:
   #     needs_release: ${{ steps.release_check.outputs.needs_release }}
@@ -64,18 +64,18 @@ jobs:
   #     INTEGRATION_TEST_BITBUCKET_TOKEN: ${{ secrets.INTEGRATION_TEST_BITBUCKET_TOKEN }}
   #     INTEGRATION_TEST_AZURE_TOKEN: ${{ secrets.INTEGRATION_TEST_AZURE_TOKEN }}
 
-  #   steps:
-  #     - uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # v4.1.3
+    steps:
+      - uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # v4.1.3
 
-  #     - name: use node.js ${{ matrix.node-version }}
-  #       uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
-  #       with:
-  #         node-version: ${{ matrix.node-version }}
-  #         registry-url: https://registry.npmjs.org/ # Needed for auth
-  #     - name: yarn install
-  #       uses: backstage/actions/yarn-install@af61233abb88019335b07ab855873d991f43d25a # v0.6.7
-  #       with:
-  #         cache-prefix: ${{ runner.os }}-v${{ matrix.node-version }}
+      - name: use node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: https://registry.npmjs.org/ # Needed for auth
+      - name: yarn install
+        uses: backstage/actions/yarn-install@af61233abb88019335b07ab855873d991f43d25a # v0.6.7
+        with:
+          cache-prefix: ${{ runner.os }}-v${{ matrix.node-version }}
 
   #     - name: Fetch previous commit for release check
   #       run: git fetch origin '${{ github.event.before }}'
@@ -128,7 +128,7 @@ jobs:
   # We can't re-use the output from the above step, but we'll have a guaranteed node_modules cache and
   # only run the build steps that are necessary for publishing
   release:
-    # needs: build
+    needs: build
 
     # if: needs.build.outputs.needs_release == 'true' || inputs.force_release == true
 
@@ -159,6 +159,7 @@ jobs:
         uses: backstage/actions/yarn-install@af61233abb88019335b07ab855873d991f43d25a # v0.6.7
         with:
           cache-prefix: ${{ runner.os }}-v${{ matrix.node-version }}
+          
 
       - name: build type declarations
         run: yarn tsc:full
