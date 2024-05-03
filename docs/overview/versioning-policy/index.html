@@ -23,7 +23,7 @@
 <script src="/js/medium-zoom.js"></script>
 <script src="/js/dismissable-banner.js"></script>
 <script src="/js/scroll-nav-to-view-in-docs.js"></script><link rel="stylesheet" href="/assets/css/styles.d4d13622.css">
-<script src="/assets/js/runtime~main.d460ac20.js" defer="defer"></script>
+<script src="/assets/js/runtime~main.3954ded8.js" defer="defer"></script>
 <script src="/assets/js/main.3411060e.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -88,19 +88,20 @@ fixes are only applied to the next release.</li>
 be followed. The rules are referring to the
 <a href="https://backstage.io/docs/overview/architecture-overview#package-architecture" target="_blank" rel="noopener noreferrer">Package Architecture</a>.</p>
 <ul>
-<li>The versions of all the packages in the <code>Frontend App Core</code> must be from the
-same release, and it is recommended to keep <code>Common Tooling</code> on that release
-too.</li>
-<li>The Backstage dependencies of any given plugin should be from the same
-release. This includes the packages from <code>Common Libraries</code>,
-<code>Frontend Plugin Core</code>, and <code>Frontend Libraries</code>, or alternatively the
-<code>Backend Libraries</code>.</li>
-<li>There must be no package that is from a newer release than the
-<code>Frontend App Core</code> packages in the app.</li>
+<li>The versions of all packages for each of the &quot;App Core&quot; groups must be from the
+same Backstage release.</li>
+<li>For each frontend and backend setup, the &quot;App Core&quot; packages must be ahead of or on the same Backstage release as the &quot;Plugin Core&quot; packages, including transitive dependencies of all installed plugins and modules.</li>
+<li>For any given plugin, the versions of all packages from the &quot;Plugin Core&quot; and
+&quot;Library&quot; groups must be from the same Backstage release.</li>
 <li>Frontend plugins with a corresponding backend plugin should be from the same
 release. The update to the backend plugin <strong>MUST</strong> be deployed before or
 together with the update to the frontend plugin.</li>
 </ul>
+<p>It is allowed and often expected that the &quot;Plugin Core&quot; and &quot;Library&quot; packages
+are from older releases than the &quot;App Core&quot; packages. It is also allowed to have
+duplicate installations of the &quot;Plugin Core&quot; and &quot;Library&quot; packages. This is all
+to make sure that upgrading Backstage is as smooth as possible and allows for
+more flexibility across the entire plugin ecosystem.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="package-versioning-policy">Package Versioning Policy<a href="#package-versioning-policy" class="hash-link" aria-label="Direct link to Package Versioning Policy" title="Direct link to Package Versioning Policy">​</a></h2>
 <p>Every individual package is versioned according to <a href="https://semver.org" target="_blank" rel="noopener noreferrer">semver</a>.
 This versioning is completely decoupled from the Backstage release versioning,
